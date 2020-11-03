@@ -1,12 +1,15 @@
 <h1>Tasks</h1>
 
-<ul>
+<ul class="list-unstyled">
   <% @tasks.each do |task| %>
-    <li>
-      <%= link_to task.title, task_path(task) %> completed: <%= task.completed %> 
-      <%= link_to 'Delete task', task_path(task), method: :delete, data: {confirm: 'Are you sure?'} %>
+    <li class="mt-2"> 
+      <div class="row row-cols-4">
+        <div class="col"><input type="checkbox" name="completed" id="" <%= task.completed ? "checked" : "" %> disabled></div>
+        <div class="col"><%= link_to task.title, task_path(task) %></div>
+        <div class="col"><%= link_to '', task_path(task), class: 'fas fa-trash btn btn-danger btn-sm', method: :delete, data: {confirm: 'Are you sure?'} %></div>
+      </div>
     </li>
   <% end %>
 </ul>
 <hr>
-<%= link_to 'Create new task', tasks_new_path %>
+<%= link_to 'Create new task', tasks_new_path, class: 'btn btn-primary' %>
